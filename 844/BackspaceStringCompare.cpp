@@ -3,7 +3,7 @@
 #include <stack>
 
 //For inspections//
-void printStack(std::stack<int> s) {
+void printStack(std::stack<char> s) {
     while (!s.empty()) {
         std::cout << s.top() << " ";
         s.pop();
@@ -14,8 +14,8 @@ void printStack(std::stack<int> s) {
 class Solution {
 public:
     bool backspaceCompare(std::string s, std::string t) {
-        std::stack<int> stackForS;
-        std::stack<int> stackForT;
+        std::stack<char> stackForS;
+        std::stack<char> stackForT;
         for(int i = 0; i < s.size(); ++i) {
             if(s[i] != '#') {
                 stackForS.push(s[i]);
@@ -30,7 +30,6 @@ public:
                 stackForT.pop();
             }
         }
-
         return stackForS == stackForT;
     }
 };
