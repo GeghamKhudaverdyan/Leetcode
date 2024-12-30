@@ -11,25 +11,23 @@ void printStack(std::stack<char> s) {
     std::cout << std::endl;
 }
 
+void pushOrPop(std::string str, std::stack<char>& stack) {
+    for(char ch : str) {
+        if(ch != '#') {
+            stack.push(ch);
+        } else if(!stack.empty()) {
+            stack.pop();    
+        }
+    }
+}
+
 class Solution {
 public:
     bool backspaceCompare(std::string s, std::string t) {
         std::stack<char> stackForS;
         std::stack<char> stackForT;
-        for(int i = 0; i < s.size(); ++i) {
-            if(s[i] != '#') {
-                stackForS.push(s[i]);
-            } else if(!stackForS.empty() && s[i] == '#') {
-                stackForS.pop();
-            }
-        }
-        for(int i = 0; i < t.size(); ++i) {
-            if(t[i] != '#') {
-                stackForT.push(t[i]);
-            } else if(!stackForT.empty() && t[i] == '#') {
-                stackForT.pop();
-            }
-        }
+        pushOrPop(s, stackForS);
+        pushOrPop(t, stackForT);
         return stackForS == stackForT;
     }
 };
